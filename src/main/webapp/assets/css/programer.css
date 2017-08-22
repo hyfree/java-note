@@ -1,0 +1,108 @@
+
+*{
+    font-family: '微软雅黑';
+	margin:0px;
+}
+ul,li{
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+}
+
+.menu{
+    width: 100%;
+    display: block;
+    height: auto;
+}
+.menu ul{
+    border-bottom: #eeeeee 1px solid;
+}
+
+.menu ul li{
+    padding:5px;
+    background-color: white;
+    padding-left:15px; 
+    font-size: 16px;
+}
+
+.menu ul li a{
+    width: 100%;
+    display: block;
+}
+
+.menu ul li::selection{
+    color: white;
+    background-color: dodgerblue;
+}
+.menu-node ul li{
+    border-bottom: none;
+}
+.menu-node li a{
+    padding-left: 15px;
+}
+
+.menu-node-last {
+    padding: 0px;
+    margin: 0px;
+    border-bottom: none !important;
+}
+
+.menu-node-last li{
+    border-bottom: none !important;
+}
+
+.show{
+    display: block;
+}
+.hide{
+    display:none;
+}
+.note-ul{
+    border-bottom: 1px solid #eeeeee;
+    height: 60px;
+    padding: 10px;
+}
+
+
+ .ztree li span.button.switch{display:none;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*瀹氫箟婊氬姩鏉￠珮瀹藉強鑳屾櫙 楂樺鍒嗗埆瀵瑰簲妯珫婊氬姩鏉＄殑灏哄*/  
+::-webkit-scrollbar  
+{  
+    width: 8px;  
+    height: 1px;  
+    background-color: #fff;  
+}  
+  
+/*瀹氫箟婊氬姩鏉¤建閬� 鍐呴槾褰�+鍦嗚*/  
+::-webkit-scrollbar-track  
+{  
+    -webkit-box-shadow: inset 0 0 6px rgba(85, 85, 85, 0.15);  
+    /*border-radius: 10px;*/  
+    background-color: rgba(85, 85, 85, 0.15);  
+}  
+  
+/*瀹氫箟婊戝潡 鍐呴槾褰�+鍦嗚*/  
+::-webkit-scrollbar-thumb  
+{  
+    /*border-radius: 10px;*/  
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);  
+    background-color: dodgerblue;
+    /*background-color: rgba(85, 85, 85, 0.15);  */
+}  

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hjli.mapper.NoteinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.hjli.model.Noteinfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="n_title" property="nTitle" jdbcType="VARCHAR" />
+    <result column="n_address" property="nAddress" jdbcType="VARCHAR" />
+    <result column="n_mdtext" property="nMdtext" jdbcType="VARCHAR" />
+    <result column="n_content" property="nContent" jdbcType="VARCHAR" />
+    <result column="n_noteid" property="nNoteid" jdbcType="VARCHAR" />
+    <result column="n_typeid" property="nTypeid" jdbcType="VARCHAR" />
+    <result column="n_date" property="nDate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, n_title, n_address, n_mdtext, n_content, n_noteid, n_typeid, n_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from noteinfo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from noteinfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hjli.model.Noteinfo" >
+    insert into noteinfo (id, n_title, n_address, 
+      n_mdtext, n_content, n_noteid, 
+      n_typeid, n_date)
+    values (#{id,jdbcType=INTEGER}, #{nTitle,jdbcType=VARCHAR}, #{nAddress,jdbcType=VARCHAR}, 
+      #{nMdtext,jdbcType=VARCHAR}, #{nContent,jdbcType=VARCHAR}, #{nNoteid,jdbcType=VARCHAR}, 
+      #{nTypeid,jdbcType=VARCHAR}, #{nDate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hjli.model.Noteinfo" >
+    insert into noteinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="nTitle != null" >
+        n_title,
+      </if>
+      <if test="nAddress != null" >
+        n_address,
+      </if>
+      <if test="nMdtext != null" >
+        n_mdtext,
+      </if>
+      <if test="nContent != null" >
+        n_content,
+      </if>
+      <if test="nNoteid != null" >
+        n_noteid,
+      </if>
+      <if test="nTypeid != null" >
+        n_typeid,
+      </if>
+      <if test="nDate != null" >
+        n_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="nTitle != null" >
+        #{nTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="nAddress != null" >
+        #{nAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="nMdtext != null" >
+        #{nMdtext,jdbcType=VARCHAR},
+      </if>
+      <if test="nContent != null" >
+        #{nContent,jdbcType=VARCHAR},
+      </if>
+      <if test="nNoteid != null" >
+        #{nNoteid,jdbcType=VARCHAR},
+      </if>
+      <if test="nTypeid != null" >
+        #{nTypeid,jdbcType=VARCHAR},
+      </if>
+      <if test="nDate != null" >
+        #{nDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hjli.model.Noteinfo" >
+    update noteinfo
+    <set >
+      <if test="nTitle != null" >
+        n_title = #{nTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="nAddress != null" >
+        n_address = #{nAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="nMdtext != null" >
+        n_mdtext = #{nMdtext,jdbcType=VARCHAR},
+      </if>
+      <if test="nContent != null" >
+        n_content = #{nContent,jdbcType=VARCHAR},
+      </if>
+      <if test="nNoteid != null" >
+        n_noteid = #{nNoteid,jdbcType=VARCHAR},
+      </if>
+      <if test="nTypeid != null" >
+        n_typeid = #{nTypeid,jdbcType=VARCHAR},
+      </if>
+      <if test="nDate != null" >
+        n_date = #{nDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hjli.model.Noteinfo" >
+    update noteinfo
+    set n_title = #{nTitle,jdbcType=VARCHAR},
+      n_address = #{nAddress,jdbcType=VARCHAR},
+      n_mdtext = #{nMdtext,jdbcType=VARCHAR},
+      n_content = #{nContent,jdbcType=VARCHAR},
+      n_noteid = #{nNoteid,jdbcType=VARCHAR},
+      n_typeid = #{nTypeid,jdbcType=VARCHAR},
+      n_date = #{nDate,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 自定义笔记 -->
+  <select id="findTwenty" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select * from noteinfo  where n_typeid in (select id from typeinfo where t_userid = #{0})
+  </select>
+</mapper>
