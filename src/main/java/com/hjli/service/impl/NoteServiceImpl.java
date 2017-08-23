@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.hjli.mapper.NoteinfoMapper;
+import com.hjli.model.NoteinfoWithBLOBs;
 import com.hjli.model.Noteinfo;
 
 @Service("noteService")
@@ -51,7 +52,7 @@ public class NoteServiceImpl implements NoteinfoMapper {
 	}
 
 	@Override
-	public List<Noteinfo> findTwenty(String userid) {
+	public List<NoteinfoWithBLOBs> findTwenty(String userid) {
 		// TODO Auto-generated method stub
 		return noteInfoMapper.findTwenty(userid);
 	}

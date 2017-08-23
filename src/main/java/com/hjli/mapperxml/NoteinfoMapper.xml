@@ -5,35 +5,42 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="n_title" property="nTitle" jdbcType="VARCHAR" />
     <result column="n_address" property="nAddress" jdbcType="VARCHAR" />
-    <result column="n_mdtext" property="nMdtext" jdbcType="VARCHAR" />
-    <result column="n_content" property="nContent" jdbcType="VARCHAR" />
     <result column="n_noteid" property="nNoteid" jdbcType="VARCHAR" />
     <result column="n_typeid" property="nTypeid" jdbcType="VARCHAR" />
     <result column="n_date" property="nDate" jdbcType="VARCHAR" />
   </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.hjli.model.NoteinfoWithBLOBs" extends="BaseResultMap" >
+    <result column="n_mdtext" property="nMdtext" jdbcType="LONGVARCHAR" />
+    <result column="n_content" property="nContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
   <sql id="Base_Column_List" >
-    id, n_title, n_address, n_mdtext, n_content, n_noteid, n_typeid, n_date
+    id, n_title, n_address, n_noteid, n_typeid, n_date
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <sql id="Blob_Column_List" >
+    n_mdtext, n_content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from noteinfo
+    ,
+    <include refid="Blob_Column_List" />
+    from Noteinfo
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from noteinfo
+    delete from Noteinfo
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.hjli.model.Noteinfo" >
-    insert into noteinfo (id, n_title, n_address, 
-      n_mdtext, n_content, n_noteid, 
-      n_typeid, n_date)
+  <insert id="insert" parameterType="com.hjli.model.NoteinfoWithBLOBs" >
+    insert into Noteinfo (id, n_title, n_address, 
+      n_noteid, n_typeid, n_date, 
+      n_mdtext, n_content)
     values (#{id,jdbcType=INTEGER}, #{nTitle,jdbcType=VARCHAR}, #{nAddress,jdbcType=VARCHAR}, 
-      #{nMdtext,jdbcType=VARCHAR}, #{nContent,jdbcType=VARCHAR}, #{nNoteid,jdbcType=VARCHAR}, 
-      #{nTypeid,jdbcType=VARCHAR}, #{nDate,jdbcType=VARCHAR})
+      #{nNoteid,jdbcType=VARCHAR}, #{nTypeid,jdbcType=VARCHAR}, #{nDate,jdbcType=VARCHAR}, 
+      #{nMdtext,jdbcType=LONGVARCHAR}, #{nContent,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.hjli.model.Noteinfo" >
-    insert into noteinfo
+  <insert id="insertSelective" parameterType="com.hjli.model.NoteinfoWithBLOBs" >
+    insert into Noteinfo
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -44,12 +51,6 @@
       <if test="nAddress != null" >
         n_address,
       </if>
-      <if test="nMdtext != null" >
-        n_mdtext,
-      </if>
-      <if test="nContent != null" >
-        n_content,
-      </if>
       <if test="nNoteid != null" >
         n_noteid,
       </if>
@@ -58,6 +59,12 @@
       </if>
       <if test="nDate != null" >
         n_date,
+      </if>
+      <if test="nMdtext != null" >
+        n_mdtext,
+      </if>
+      <if test="nContent != null" >
+        n_content,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -70,12 +77,6 @@
       <if test="nAddress != null" >
         #{nAddress,jdbcType=VARCHAR},
       </if>
-      <if test="nMdtext != null" >
-        #{nMdtext,jdbcType=VARCHAR},
-      </if>
-      <if test="nContent != null" >
-        #{nContent,jdbcType=VARCHAR},
-      </if>
       <if test="nNoteid != null" >
         #{nNoteid,jdbcType=VARCHAR},
       </if>
@@ -85,22 +86,22 @@
       <if test="nDate != null" >
         #{nDate,jdbcType=VARCHAR},
       </if>
+      <if test="nMdtext != null" >
+        #{nMdtext,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="nContent != null" >
+        #{nContent,jdbcType=LONGVARCHAR},
+      </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.hjli.model.Noteinfo" >
-    update noteinfo
+  <update id="updateByPrimaryKeySelective" parameterType="com.hjli.model.NoteinfoWithBLOBs" >
+    update Noteinfo
     <set >
       <if test="nTitle != null" >
         n_title = #{nTitle,jdbcType=VARCHAR},
       </if>
       <if test="nAddress != null" >
         n_address = #{nAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="nMdtext != null" >
-        n_mdtext = #{nMdtext,jdbcType=VARCHAR},
-      </if>
-      <if test="nContent != null" >
-        n_content = #{nContent,jdbcType=VARCHAR},
       </if>
       <if test="nNoteid != null" >
         n_noteid = #{nNoteid,jdbcType=VARCHAR},
@@ -111,15 +112,30 @@
       <if test="nDate != null" >
         n_date = #{nDate,jdbcType=VARCHAR},
       </if>
+      <if test="nMdtext != null" >
+        n_mdtext = #{nMdtext,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="nContent != null" >
+        n_content = #{nContent,jdbcType=LONGVARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.hjli.model.Noteinfo" >
-    update noteinfo
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hjli.model.NoteinfoWithBLOBs" >
+    update Noteinfo
     set n_title = #{nTitle,jdbcType=VARCHAR},
       n_address = #{nAddress,jdbcType=VARCHAR},
-      n_mdtext = #{nMdtext,jdbcType=VARCHAR},
-      n_content = #{nContent,jdbcType=VARCHAR},
+      n_noteid = #{nNoteid,jdbcType=VARCHAR},
+      n_typeid = #{nTypeid,jdbcType=VARCHAR},
+      n_date = #{nDate,jdbcType=VARCHAR},
+      n_mdtext = #{nMdtext,jdbcType=LONGVARCHAR},
+      n_content = #{nContent,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hjli.model.Noteinfo" >
+    update Noteinfo
+    set n_title = #{nTitle,jdbcType=VARCHAR},
+      n_address = #{nAddress,jdbcType=VARCHAR},
       n_noteid = #{nNoteid,jdbcType=VARCHAR},
       n_typeid = #{nTypeid,jdbcType=VARCHAR},
       n_date = #{nDate,jdbcType=VARCHAR}
@@ -127,7 +143,9 @@
   </update>
   
   <!-- 自定义笔记 -->
-  <select id="findTwenty" resultMap="BaseResultMap" parameterType="java.lang.String">
-  	select * from noteinfo  where n_typeid in (select id from typeinfo where t_userid = #{0})
+  <select id="findTwenty" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
+  	select <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" /> from Noteinfo  where n_typeid in (select id from typeinfo where t_userid = #{0})
   </select>
 </mapper>

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.hjli.model.NoteinfoWithBLOBs;
 import com.hjli.model.Noteinfo;
 import com.hjli.service.impl.NoteServiceImpl;
 import com.hjli.tool.TemplateTool;
@@ -50,7 +51,7 @@ public class NoteController {
 			String content = request.getParameter("content");
 			String mdtext = request.getParameter("mdtext");
 			//添加到数据库
-			Noteinfo note = new Noteinfo();
+			NoteinfoWithBLOBs note = new NoteinfoWithBLOBs();
 			note.setnAddress(address);
 			note.setnContent(content);
 			note.setnMdtext(mdtext);

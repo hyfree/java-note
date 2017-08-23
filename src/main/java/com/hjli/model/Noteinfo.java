@@ -7,10 +7,6 @@ public class Noteinfo {
 
     private String nAddress;
 
-    private String nMdtext;
-
-    private String nContent;
-
     private String nNoteid;
 
     private String nTypeid;
@@ -39,22 +35,6 @@ public class Noteinfo {
 
     public void setnAddress(String nAddress) {
         this.nAddress = nAddress == null ? null : nAddress.trim();
-    }
-
-    public String getnMdtext() {
-        return nMdtext;
-    }
-
-    public void setnMdtext(String nMdtext) {
-        this.nMdtext = nMdtext == null ? null : nMdtext.trim();
-    }
-
-    public String getnContent() {
-        return nContent;
-    }
-
-    public void setnContent(String nContent) {
-        this.nContent = nContent == null ? null : nContent.trim();
     }
 
     public String getnNoteid() {

@@ -2,6 +2,7 @@ package com.hjli.mapper;
 
 import java.util.List;
 
+import com.hjli.model.NoteinfoWithBLOBs;
 import com.hjli.model.Noteinfo;
 
 public interface NoteinfoMapper {
@@ -17,5 +18,5 @@ public interface NoteinfoMapper {
 
     int updateByPrimaryKey(Noteinfo record);
     
-    List<Noteinfo> findTwenty(String userid);
+    List<NoteinfoWithBLOBs> findTwenty(String userid);
 }
