@@ -23,13 +23,14 @@ CREATE TABLE `noteinfo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `n_title` varchar(200) DEFAULT NULL,
   `n_address` varchar(255) DEFAULT NULL,
-  `n_mdtext` varchar(10000) DEFAULT NULL,
-  `n_content` varchar(255) DEFAULT NULL,
+  `n_mdtext` text,
+  `n_content` text,
   `n_noteid` varchar(255) DEFAULT NULL,
   `n_typeid` varchar(255) DEFAULT NULL,
   `n_date` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
 
 -- ----------------------------
 -- Records of noteinfo
