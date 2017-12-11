@@ -19,7 +19,7 @@
 		<div class="am-u-md-12">
 			<h1 style="text-align: center;">${title}
 			</h1>
-			<hr/>
+			<hr "/>
 
 			<div id="main-body" class="markdown-body editormd-preview-container" previewcontainer="true" style="padding: 20px;">
 				${content}

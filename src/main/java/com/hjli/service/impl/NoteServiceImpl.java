@@ -57,4 +57,13 @@ public class NoteServiceImpl implements NoteinfoMapper {
 		return noteInfoMapper.findTwenty(userid);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.hjli.mapper.NoteinfoMapper#findByTypeId(java.lang.String)
+	 */
+	@Override
+	public List<NoteinfoWithBLOBs> findByTypeId(String typeId) {
+		// TODO Auto-generated method stub
+		return noteInfoMapper.findByTypeId(typeId);
+	}
+
 }

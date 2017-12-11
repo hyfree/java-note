@@ -22,8 +22,10 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/programer.css">
 
 <style type="text/css">
-
-a:hover{
+a,span{
+	cursor: pointer;
+}
+a,span:hover{
 	cursor: pointer;
 }
 
@@ -60,11 +62,11 @@ a:hover{
 			       <!--带更多链接-->
 			        <a href="##" class="">
 			          <h2>最新笔记列表</h2>
-			            <span class="am-list-news-more am-fr">更多 &raquo;</span>
+			            <!-- <span class="am-list-news-more am-fr">更多 &raquo;</span> -->
 			        </a>
 			    </div>
 			  	<div class="am-list-news-bd">
-				  	<ul class="am-list">
+				  	<ul class="am-list" id="noteListBody">
 				  		<c:forEach items="${list }" var ="note">
 				      <li class="am-g am-list-item-dated">
 				          <a href="${note.nAddress }" class="am-list-item-hd ">${note.nTitle }</a>
@@ -118,6 +120,8 @@ a:hover{
 			        dataType: "json",
 			        success: function (data) {//请求正确执行的方法（后台返回的结果）
 			        	$("#menu").append(treeHtml(data.result));
+			        	//在这里获取到笔记的列表json 拼接html
+			        	
 					}
 				});
 			}else{
@@ -132,6 +136,7 @@ a:hover{
 				        	$("#"+id).next('ul').append(treeHtml(data.result));
 				        	//$("#"+id).append(treeHtml(data.result));
 				        	$("#"+id).next('ul').css('display','block');
+				        	//alert(data.noteList);
 						}
 					});
 				}else{
@@ -146,6 +151,16 @@ a:hover{
 					        	$("#"+id).next('ul').append(treeHtml(data.result));
 					        	//$("#"+id).append(treeHtml(data.result));
 					        	$("#"+id).next('ul').css('display','block');
+					        	//alert(data.noteList);
+					        	var appendHtml = '';
+					        	$(data.noteList).each(function(i,item){
+					        		appendHtml += 
+						        		'<li class="am-g am-list-item-dated">'+
+									     '     <a href="'+item.nAddress+'" class="am-list-item-hd ">'+item.nTitle+'</a>'+
+									      '    <span class="am-list-date">'+item.nDate+'</span>'+
+									      '</li>';
+					        	})
+					        	$("#noteListBody").html(appendHtml);
 							}
 						});
 					}else{

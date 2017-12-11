@@ -14,8 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.hjli.model.NoteinfoWithBLOBs;
 import com.hjli.model.Typeinfo;
 import com.hjli.model.Userinfo;
+import com.hjli.service.impl.NoteServiceImpl;
 import com.hjli.service.impl.TypeServiceImpl;
 import com.hjli.tool.TemplateTool;
 
@@ -25,6 +27,9 @@ public class TypeController {
 
 	@Resource
 	TypeServiceImpl typeService;
+	
+	@Resource
+	NoteServiceImpl noteService;
 	/**
 	 * 根据用户信息获取文件夹信息
 	 * */
@@ -130,6 +135,10 @@ public class TypeController {
 			}else{
 				sessionList = getAllNode(request);
 				listResult = getNode(request,sessionList,id);
+			}
+			if(!id.equals("1")&&!id.equals("0")){
+				List<NoteinfoWithBLOBs> noteList = noteService.findByTypeId(id);//这里获取笔记  自己新增方法 findByType
+				msg.put("noteList", noteList);
 			}
 			msg.put("result", listResult);
 		}else{

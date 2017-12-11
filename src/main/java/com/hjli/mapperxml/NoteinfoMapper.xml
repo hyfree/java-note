@@ -148,4 +148,10 @@
     ,
     <include refid="Blob_Column_List" /> from Noteinfo  where n_typeid in (select id from typeinfo where t_userid = #{0})
   </select>
+  
+  <select id="findByTypeId" resultMap="ResultMapWithBLOBs" >
+  select <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />  from noteinfo where n_typeid = #{typeid}
+  </select>
 </mapper>
