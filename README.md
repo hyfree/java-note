@@ -4,7 +4,7 @@
 ### 项目信息
 > #### 项目昵称：Java Note System
 > #### 开发工具：Eclipse , Tomcat 8.5 , JDK 1.8
-> #### 主要技术：Java , SSM(Spring , Spring MVC , MyBatis) , MySQL , Ajax , Bootstrap , Freemarker ...
+> #### 主要技术：Java , SSMM(Spring , Spring MVC , MyBatis , Maven) , MySQL , Ajax , Bootstrap , Freemarker ...
 > #### 开源协议：Apache License Version 2.0
 > #### 项目作者：Haojie Li
 > #### 联系邮件：2252487366@qq.com
