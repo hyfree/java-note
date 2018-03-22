@@ -30,6 +30,9 @@ public class IndexController {
 	public ModelAndView index() {
 		ModelAndView model = new ModelAndView("index");
 		
+		
+		
+		
 		return model;
 	}
 
