@@ -29,6 +29,7 @@ public class IndexController {
 	@RequestMapping("index")
 	public ModelAndView index() {
 		ModelAndView model = new ModelAndView("index");
+		
 		return model;
 	}
 
