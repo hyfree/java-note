@@ -24,15 +24,15 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from Noteinfo
+    from noteinfo
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from Noteinfo
+    delete from noteinfo
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.hjli.model.NoteinfoWithBLOBs" >
-    insert into Noteinfo (id, n_title, n_address, 
+    insert into noteinfo (id, n_title, n_address, 
       n_noteid, n_typeid, n_date, 
       n_mdtext, n_content)
     values (#{id,jdbcType=INTEGER}, #{nTitle,jdbcType=VARCHAR}, #{nAddress,jdbcType=VARCHAR}, 
@@ -40,7 +40,7 @@
       #{nMdtext,jdbcType=LONGVARCHAR}, #{nContent,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.hjli.model.NoteinfoWithBLOBs" >
-    insert into Noteinfo
+    insert into noteinfo
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -146,7 +146,7 @@
   <select id="findTwenty" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
   	select <include refid="Base_Column_List" />
     ,
-    <include refid="Blob_Column_List" /> from Noteinfo  where n_typeid in (select id from typeinfo where t_userid = #{0})
+    <include refid="Blob_Column_List" /> from noteinfo  where n_typeid in (select id from typeinfo where t_userid = #{0})
   </select>
   
   <select id="findByTypeId" resultMap="ResultMapWithBLOBs" >
